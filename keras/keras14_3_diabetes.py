@@ -21,42 +21,40 @@ print(x.shape) #(442, 10)
 print(y)
 print(y.shape) #(442, )
 
-x_train, x_test, y_train, y_test = train_test_split(x, y, train_size=0.75, shuffle=True, random_state=123)
+x_train, x_test, y_train, y_test = train_test_split(x, y, train_size=0.8, shuffle=True, random_state=123)
 
 #2. 모델구성
 model = Sequential()
-model.add(Dense(10, input_dim=10))
-model.add(Dense(20))
-model.add(Dense(30))
-model.add(Dense(60))
-model.add(Dense(100))
-model.add(Dense(60))
-model.add(Dense(30))
-model.add(Dense(20))
-model.add(Dense(10))
+model.add(Dense(16, input_dim=10))
+model.add(Dense(64))
+model.add(Dense(128))
+model.add(Dense(512))
+model.add(Dense(128))
+model.add(Dense(64))
+model.add(Dense(16))
 model.add(Dense(1))
 
 #3. 컴파일, 훈련
 model.compile(loss='mse', optimizer='adam', metrics=['mae'] )
-model.fit(x_train, y_train, epochs=100, batch_size=32)
+model.fit(x_train, y_train, epochs=1000, batch_size=60)
 
 #4. 평가, 예측
 loss = model.evaluate(x_test, y_test)
 y_predict = model.predict(x_test)
 
-def RSME(y_test, y_predict):
+def RMSE(y_test, y_predict):
     return np.sqrt(mean_squared_error(y_test, y_predict))
-print ('RSME : ', RSME(y_test, y_predict))
+print ('RMSE : ', RMSE(y_test, y_predict))
 
 r2 = r2_score(y_test, y_predict)
 print("R2 : ", r2)
 
 """
-Epoch 99/100
-11/11 [==============================] - 0s 999us/step - loss: 2937.5986 - mae: 43.8780
-Epoch 100/100
-11/11 [==============================] - 0s 970us/step - loss: 2895.4133 - mae: 43.4398
-4/4 [==============================] - 0s 258us/step - loss: 2921.9883 - mae: 43.8207
-RSME :  54.05541978170263
-R2 :  0.5085354858326381
+Epoch 999/1000
+8/8 [==============================] - 0s 1ms/step - loss: 2977.7812 - mae: 44.2632
+Epoch 1000/1000
+8/8 [==============================] - 0s 1ms/step - loss: 2929.5869 - mae: 43.7691
+3/3 [==============================] - 0s 0s/step - loss: 2636.3167 - mae: 41.9248
+RSME :  51.345075005195916
+R2 :  0.5815481464842314
 """

@@ -36,7 +36,6 @@ print(y)
 print(y.shape) # (1459,)
 print(test_csv)
 
-
 x_train, x_test, y_train, y_test = train_test_split(x, y, train_size=0.75, shuffle=True, random_state=44)
 print(x_train.shape, x_test.shape) # (1021, 9) (438, 9)
 print(y_train.shape, y_test.shape) # (929, 9) (399, 9)
@@ -90,7 +89,7 @@ print(submission.shape) # (715, 1)
 submission['count'] = y_submit
 print(submission)
 
-submission.to_csv(path + 'submission_01050316.csv')
+submission.to_csv(path + 'submission_010613.csv')
 print ('RMSE : ', rmse)
 
 print('time: ', end-start)
@@ -98,4 +97,23 @@ print('time: ', end-start)
 """
 CPU 걸린 시간 : 8.462605237960815
 GPU 걸린 시간 : 38.28581666946411
+"""
+
+"""
+메모
+# 전체 주석 달아서 중단 실행하던지 옆에 빨간점 누르고 중단점 실행하기
+# print(y_submit)에서 [nan]이 나오는 이유는 test.csv도 결측치가 있었다는 뜻임.
+# 하지만 test.csv에서의 있는 nan은 삭제하면 안된다. submission으로 제출해야하기때문에 공란이 있으면 안된다.
+
+# 컬럼에 채우는 방법 : submission['count'] count란에 y_submit을 넣는다.
+
+# .to_csv()는 panda 라이브러리에 있다. 우선 y_submit을 dataframe으로 만들고 그걸 .to_csv 한다.
+# 경로는 './_data/ddarung/submission_0105.csv' 하면 된다.
+# df = pd.DataFrame(y_submit)
+# df.to_csv(path + 'submission_0105.csv')
+
+# 왜 지금의 RMSE와 대회에 올라간 점수가 다를까?
+# 대회에서는 내가 올린 데이터의 50%만 테스트한다. 테스트한 데이터를 public이라하고
+# 나머지를 private이라 한 다음 맨 마지막 대회 최종 결과 발표날의 점수가 진짜 점수다.
+# 즉, 대회에서 일부러 데이터를 왜곡한다는 의미이다.
 """

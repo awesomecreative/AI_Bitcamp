@@ -45,10 +45,6 @@ def RMSE(y_test, y_predict):
     
 print("RMSE : ", RMSE(y_test, y_predict))
 
-# loss 값이 2개 나오는 이유: compile 해서 evalutate 할 때 loss와 metrics를 둘 다 사용했기 때문에 각각의 loss값이 나온다.
-# np.sqrt는 바깥쪽에 루트를 씌우는 걸 의미한다.
-# return는 돌려주라는 의미이다.
-# mean_squared_error 라는 건 sklearn 라이브러리에 정리되어 있는 함수이다.
 
 """
 Epoch 99/100
@@ -69,4 +65,12 @@ loss :  [14.690262794494629, 2.9717676639556885] : [mse, mae]
 RMSE :  3.8327884455088443 : mse에 루트 씌운 것을 의미한다.
 """
 
+"""
+메모
+
+# loss 값이 2개 나오는 이유: compile 해서 evalutate 할 때 loss와 metrics를 둘 다 사용했기 때문에 각각의 loss값이 나온다.
+# np.sqrt는 바깥쪽에 루트를 씌우는 걸 의미한다.
+# return는 돌려주라는 의미이다.
+# mean_squared_error 라는 건 sklearn 라이브러리에 정리되어 있는 함수이다.
 # 훈련할 때마다 RMSE 달라질 것, 이중에 가장 작은 값이 가장 좋은 가중치이므로 이것을 사용한다.
+"""
