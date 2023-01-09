@@ -24,7 +24,7 @@ model = Sequential()
 model.add(Dense(18, input_dim=9, activation = 'linear'))
 model.add(Dense(40, activation = 'relu'))
 model.add(Dense(60, activation = 'relu'))
-model.add(Dense(90, activation = 'relu'))
+model.add(Dense(100, activation = 'relu'))
 model.add(Dense(30, activation = 'relu'))
 model.add(Dense(10, activation = 'relu'))
 model.add(Dense(1, activation = 'linear'))
@@ -47,7 +47,7 @@ r2 = r2_score(y_test, y_predict)
 y_submit = model.predict(test_csv)
 
 submission['count'] = y_submit
-submission.to_csv(path + 'submission_val_010610.csv')
+submission.to_csv(path + 'submission_val_010611.csv')
 print ('RMSE : ', rmse)
 print ('r2: ', r2)
 print('time: ', end-start)
@@ -124,6 +124,23 @@ RMSE :  43.3687774843936
 r2:  0.6763359939389745
 
 submission_val_010610.csv
+Epoch 1000/1000
+54/54 [==============================] - 0s 1ms/step - loss: 946.0626 - mae: 20.2645 - mse: 946.0626 - val_loss: 2218.9719 - val_mae: 34.0969 - val_mse: 2218.9719
+9/9 [==============================] - 0s 623us/step - loss: 1760.1021 - mae: 28.8608 - mse: 1760.1021
+RMSE :  41.95357010745564
+r2:  0.6971149117400296
+
+submission_val_010611.csv
 
 훈련횟수를 증가하면 성능이 좋아진다. (여기선 1000이 괜찮은듯)
+"""
+
+"""
+18-40-60-100-30-10-1, epochs=1000, batch_size=16
+RMSE:  54.863184480708725
+r2:  0.4820330262211937
+
+20-50-80-100-60-40-10-1, epochs=1000, batch_size=16
+RMSE:  42.8548242957806
+r2:  0.683961870486326
 """
