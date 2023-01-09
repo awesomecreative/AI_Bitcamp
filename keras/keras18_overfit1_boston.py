@@ -45,6 +45,8 @@ print("=======================================")
 #5. submit, draw
 
 import matplotlib.pyplot as plt
+plt.rcParams['font.family']='Malgun Gothic'
+plt.rcParams['axes.unicode_minus']=False
 
 plt.figure(figsize=(9,6))
 plt.plot(hist.history['loss'], c='red', marker='.', label='loss')
@@ -52,7 +54,7 @@ plt.plot(hist.history['val_loss'], c='blue', marker='.', label='val_loss')
 plt.grid()
 plt.xlabel('epochs')
 plt.ylabel('loss')
-plt.title('boston loss')
+plt.title('보스턴 사람수')
 plt.legend(loc='center right')
 plt.show()
 
@@ -96,4 +98,23 @@ model.add(Dense(40000))
 model.add(Dense(3))
 model.add(Dense(30000))
 : 4만 곱하기 3, 3 곱하기 3만 이므로 최대치 약 12만으로 메모리 안 부족함.
+"""
+
+"""
+<matplotlib 한글 깨짐>
+# https://bskyvision.com/entry/python-matplotlibpyplot%EB%A1%9C-%EA%B7%B8%EB%9E%98%ED%94%84-%EA%B7%B8%EB%A6%B4-%EB%95%8C-%ED%95%9C%EA%B8%80-%EA%B9%A8%EC%A7%90-%EB%AC%B8%EC%A0%9C-%ED%95%B4%EA%B2%B0-%EB%B0%A9%EB%B2%95
+윈도우 PC에서는 폰트가 C:\Windows\Fonts에 위치한다.\
+여기서 쓰고자 하는 폰트의 속성에 들어가 폰트의 영문이름을 확인한다.
+ex) 맑은 고딕 보통은 malgun.ttf 이다.
+
+1번째 방법
+from matplotlib import font_manager, rc
+font_path = "C:/Windows/Fonts/malgun.ttf"
+font = font_manager.FontProperties(fname=font_path).get_name()
+rc('font', family=font)
+
+2번째 방법
+import matplotlib.pyplot as plt
+plt.rcParams['font.family']='Malgun Gothic'
+plt.rcParams['axes.unicode_minus']=False
 """

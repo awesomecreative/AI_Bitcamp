@@ -104,4 +104,6 @@ Epoch 19/300
 Epoch 00019: early stopping
 4/4 [==============================] - 0s 3ms/step - loss: 76.8515
 loss :  76.85153198242188
+
+monitor='accuracy', mode='max'로 해도 좋음.
 """
