@@ -88,4 +88,6 @@ y_predict는 실수로 출력되어 있고 y_test에는 1,0으로만 되어있�
 y_predict = y_predict.astype(int)
 astype이란 파라미터를 써서 자료형을 integer(정수형)으로 바꿔준다.
 astype은 numpy란 라이브러리에 있기 때문에 import numpy 해줘야 한다.
+
+# sigmoid는 0에서 1사이를 출력한다. 0과 1만을 출력하는 것이 아니다.
 """
