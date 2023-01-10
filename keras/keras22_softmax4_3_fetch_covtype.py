@@ -144,6 +144,7 @@ ohe = OneHotEncoder(sparse=False)
 
 2) 벡터: 원핫엔코더하려면 벡터 형태로 reshape 해줘야 한다.
 y = y.reshape(-1,1) 해서 (581012, 1) 벡터 형태의 numpy.ndarray를 만든다.
+# (-1,1) 하면 (전체, 1)과 같다.
 
 3) 원핫엔코딩: y = ohe.fit_transform(y)로 원핫엔코딩한다.
 y = ohe.fit_transform(y) 하면 (581012, 7) 벡터 형태의 scipy.sparse._csr.csr_matrix가 나온다.
