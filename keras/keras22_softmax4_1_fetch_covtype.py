@@ -20,7 +20,11 @@ print(np.unique(y, return_counts=True))
 
 from tensorflow.keras.utils import to_categorical
 y = to_categorical(y)
-y = np.delete(y, 0, axis=1)
+print(np.unique(y[:,0], return_counts=True)) # y값 전체 중 0번째 컬럼의 고유한 값 리턴
+print(np.unique(y[:,1], return_counts=True)) # y값 전체 중 1번째 컬럼의 고유한 값 리턴
+print(np.unique(y[:,-1], return_counts=True)) # y값 전체 중 마지막 컬럼의 고유한 값 리턴
+
+y = np.delete(y, 0, axis=1) # y의 0번째 컬럼을 지운다.
 print(y)
 print(y.shape)
 
@@ -102,6 +106,12 @@ Memo
 <scikit-onehotencoder vs pandas-get_dummies vs keras-to_categorical>
 to_categorical의 특성 : 무조건 0부터 시작하게끔 한다. => 0이 없을 경우 class 하나 더 만듦.
 y 데이터가 [1 2 3 4 5 6 7]일 경우 to_categorical(y)하면 [0 1 2 3 4 5 6 7]로 0을 더 추가해 만듦.
+
+=> 확인하는 방법: np.unique, y[:,0], y[:,-1], return_counts=True
+print(np.unique(y[:,0], return_counts=True)) # y값 전체 중 0번째 컬럼의 고유한 값 리턴
+print(np.unique(y[:,1], return_counts=True)) # y값 전체 중 1번째 컬럼의 고유한 값 리턴
+print(np.unique(y[:,-1], return_counts=True)) # y값 전체 중 마지막 컬럼의 고유한 값 리턴
+
 => 해결방법: 첫번째 칼럼 삭제하기!
 => y = np.delete(y, 0, axis=1)
 np.delete(데이터, 0번째, 행삭제는 axis=0, 열삭제는 axis=1)
