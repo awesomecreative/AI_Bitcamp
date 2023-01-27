@@ -1,6 +1,6 @@
 from sklearn.datasets import load_iris
 from tensorflow.keras.models import Sequential, Model, load_model
-from tensorflow.keras.layers import Dense, Input, Dropout, Conv2D, Flatten, LSTM, Conv1D
+from tensorflow.keras.layers import Dense, Input, Dropout, Conv2D, Flatten, LSTM
 from sklearn.model_selection import train_test_split
 
 #1. data
@@ -35,8 +35,7 @@ x_test = x_test.reshape(30, 4, 1)
 
 #2. model
 model = Sequential()
-model.add(Conv1D(512, 1, input_shape=(4,1)))
-model.add(Flatten())
+model.add(LSTM(512, input_shape=(4,1), activation='relu'))
 model.add(Dense(50, activation = 'relu'))
 model.add(Dense(40, activation = 'sigmoid'))
 model.add(Dropout(0.3))
@@ -62,7 +61,7 @@ es = EarlyStopping(monitor='val_loss', mode='min', patience=10, restore_best_wei
 # mcp = ModelCheckpoint(monitor='val_loss', mode='auto', verbose=1, save_best_only=True,
 #                      filepath = filepath + 'k39_07_' + date + '_' + filename)
 
-model.fit(x_train, y_train, epochs=100, batch_size=32, validation_split=0.2, verbose=1,
+model.fit(x_train, y_train, epochs=100, batch_size=1, validation_split=0.2, verbose=1,
           callbacks=[es])
 # callbacks=[es,mcp]
 
@@ -87,22 +86,22 @@ acc = accuracy_score(y_test, y_predict)
 print('acc : ', acc)
 
 """
-Epoch 55/100
-1/3 [=========>....................] - ETA: 0s - loss: 0.0469 - accuracy: 0.9688Restoring model weights from the end of the best epoch: 45.
-3/3 [==============================] - 0s 14ms/step - loss: 0.0643 - accuracy: 0.9688 - val_loss: 0.1109 - val_accuracy: 0.9583
-Epoch 00055: early stopping
-1/1 [==============================] - 0s 24ms/step - loss: 0.0081 - accuracy: 1.0000
-loss :  0.008138095028698444
+Epoch 35/100
+92/96 [===========================>..] - ETA: 0s - loss: 0.0940 - accuracy: 0.9783Restoring model weights from the end of the best epoch: 25.
+96/96 [==============================] - 1s 9ms/step - loss: 0.1202 - accuracy: 0.9688 - val_loss: 0.1535 - val_accuracy: 0.9583
+Epoch 00035: early stopping
+1/1 [==============================] - 0s 162ms/step - loss: 0.0166 - accuracy: 1.0000
+loss :  0.016645126044750214
 accuracy :  1.0
 y_pred :  [0 2 1 2 2 2 0 0 0 1 2 1 0 1 0 2 0 1 1 0 1 1 2 2 0 0 2 2 1 1]
-y_test :  [[1. 0. 0.] 
- [0. 0. 1.] 
- [0. 1. 0.] 
+y_test :  [[1. 0. 0.]
+ [0. 0. 1.]
+ [0. 1. 0.]
  [0. 0. 1.]
  [0. 0. 1.]
- [0. 0. 1.] 
- [1. 0. 0.] 
- [1. 0. 0.] 
+ [0. 0. 1.]
+ [1. 0. 0.]
+ [1. 0. 0.]
  [1. 0. 0.]
  [0. 1. 0.]
  [0. 0. 1.]
