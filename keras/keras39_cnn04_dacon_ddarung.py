@@ -45,7 +45,6 @@ model.add(Dense(40, activation = 'relu'))
 model.add(Dense(10, activation = 'relu'))
 model.add(Dense(1, activation = 'linear'))
 
-
 #3. compile, fit : earlystop, time
 model.compile(loss='mse', optimizer='adam', metrics=['mae','mse'])
 
