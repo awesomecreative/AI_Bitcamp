@@ -53,7 +53,7 @@ loss = model.evaluate([x1_test, x2_test], y_test)
 print('loss : ', loss)
 
 """
-■ 앙상블 (모델 여러개 merge 병합)
+■ 앙상블 (모델 여러 개 merge 병합)
 앙상블 학습은 여러 개의 결정 트리(Decision Tree)를 결합하여
 하나의 결정 트리보다 더 좋은 성능을 내는 머신러닝 기법임.
 : 앙상블은 함수형 모델로 함. => 병합도 쉽고 나누는 것도 쉬움.
